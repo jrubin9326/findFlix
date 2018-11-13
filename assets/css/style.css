@@ -12,6 +12,7 @@ img {
 .one {
     margin-left: 20px; 
     margin-right:90px; 
+    
  
 }
 
@@ -27,5 +28,5 @@ img {
     margin-right:20px; 
 }
 img:hover {
-    box-shadow: 0 0 2px 1px rgba(58, 61, 223, 0.5);
+    box-shadow: 0 0 2px 1px rgba(58, 223, 86, 0.5));
 }

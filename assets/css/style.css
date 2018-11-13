@@ -1,4 +1,32 @@
-img { 
-    height: 40px; 
-    width: 40px; 
+img {
+    height:150px; 
+    width:150px;
+    border:2px solid black; 
+    border-radius:4px; 
+    
+  
+}
+/* div:last-child {
+    margin-right:0; 
+} */
+.one {
+    margin-left: 20px; 
+    margin-right:90px; 
+    
+ 
+}
+
+.two {
+    margin-right:90px; 
+}
+
+.three {
+    margin-right:90px; 
+}
+
+.four {
+    margin-right:20px; 
+}
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(58, 223, 86, 0.5);
 }

@@ -49,19 +49,4 @@ function geolocation() {
 
 //call function
 
-<<<<<<< HEAD
-geolocation(); 
-
-//use user geolocation in movieglu api to find cinemas nearby
-
-findCinemas = () => {
-    axios.get(moviegluURL, {
-        params : {
-            key: 'Au2GVSQyKQ3qZ7Ak0PY7alzjTHNGkle6EbodvsJb'
-
-        }
-    })
-}
-=======
 geolocation();
->>>>>>> b2845ad4871e3b05dba0769a525a5fc57c2dd092

@@ -2,8 +2,8 @@ $(".img-thumbnail").on("click", function() {
     var searchTerm = $(this).attr("value");
     console.log(searchTerm);
 
-    displayMovieInfo(searchTerm);
-})
+    // displayMovieInfo(searchTerm);
+});
 
 function displayMovieInfo(search) {
     // `search` corresponds to the genre code for the TMDB API
@@ -11,22 +11,31 @@ function displayMovieInfo(search) {
 
     // Creates AJAX call for the specific movie button being clicked
     $.ajax({
-      url: queryURL,
-      method: "GET"
+        url: queryURL,
+        method: "GET"
     }).then(function(response) {
-      console.log(response.results);
+        // print movie list to console
+        console.log(response.results);
     });
 }
 
-//global varibales 
-var googleURL = "https://maps.googleapis.com/maps/api/geocode/json" 
-var location =  $("#locationtxt").val().trim()
+//global variables
+var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
+
 var latitude;
-var longitude; 
+var longitude;
+
+$("#location-submit").on("click", function() {
+    event.preventDefault();
+    var location =  $("#locationtxt").val().trim();
+    $("#locationtxt").text("");
+
+    //call function
+    geolocation();
+});
+
 //making a GET request to get user lat & long from user location
 function geolocation() {
-    
-   
     axios.get(googleURL, {
         params: {
             address: location,
@@ -41,9 +50,5 @@ function geolocation() {
     })    
     .catch (function(error){
         console.log(error); 
-    })
+    });
 }
-
-//call function
-
-geolocation();

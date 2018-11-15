@@ -30,3 +30,9 @@
 img:hover {
     box-shadow: 0 0 2px 1px rgba(58, 223, 86, 0.5);
 }
+
+.jumbotron {
+    background-image: url("../images/curtain-269920_1280.jpg");
+    background-size: cover;
+    color: white;
+}

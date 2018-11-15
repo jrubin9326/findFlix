@@ -21,7 +21,7 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h1 class="type-bold">Welcome to Findflix</h1>
-            <h3>Get ready to search some Lights, Camera and SHOWTIME!!</h3>
+            <h3>Get ready to search some Lights, Camera and SHOWTIME!</h3>
             <h5>Get started by picking a genre!</h5>
         </div>
         <div class = "img-container">
@@ -30,15 +30,20 @@
             <img class="img-thumbnail" value="14" src= "assets/images/fantasy.png" alt = "Fantasy Img">
             <img class="img-thumbnail" value="27" src= "assets/images/horror.png" alt = "Horror img">
         </div>
+
+        <br>
+
+        <span>Location: </span><input type = "text" id = "locationtxt" placeholder = "your location">
+        <button class="btn btn-dark" id="location-submit">Submit</button>
+
+        <br>
+        
         <div class="row" id="movie-results">
             <!-- going to put the results list here, hidden by default and shown when genre is selected -->
         </div>
 
-
     </div>
 
-    <span>Location: </span><input type = "text" id = "locationtxt" placeholder = "your location" required>
-    <button class="btn btn-dark" id="location-submit">Submit</button>
     <!--link to axios-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--google maps APi-->

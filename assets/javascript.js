@@ -1,13 +1,94 @@
-// $(".img-thumbnail").on("click", function() {
-//     var searchTerm = $(this).attr("value");
-//     console.log(searchTerm);
+$(".img-thumbnail").on("click", function() {
+    // clear the movies from the previous genre, if any are on the page
+    $("#movie-results").empty();
 
-//     displayMovieInfo(searchTerm);
-// });
+    // grab the value of the genre button
+    var searchTerm = $(this).attr("value");
 
-// function displayMovieInfo(search) {
-//     // `search` corresponds to the genre code for the TMDB API
-//     var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6d9d4c1511419d5253e7cf5683b3e1df&with_genres=" + search + "&sort_by=popularity.desc";
+    // `movieData` will hold the response object
+    var movieData;
+
+    // `search` corresponds to the genre code for the TMDB API
+    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6d9d4c1511419d5253e7cf5683b3e1df&with_genres=" + searchTerm + "&sort_by=popularity.desc";
+
+    // Creates AJAX call for the specific movie button being clicked
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        // creating a shortcut
+        movieData = response.results;
+
+        // show 10 results on the page
+        for (var i = 0; i < 10; i ++) {
+            displayMovieInfo(movieData[i]);
+        }
+    });
+});
+
+function displayMovieInfo(search) {
+    var newMovieDiv = $("<div>");
+
+    var newTitle = $("<h5>");
+    newTitle.text(search.title);
+    
+    var newOverview = $("<p>");
+    newOverview.text(search.overview);
+    
+    var newRelease = $("<p>");
+    newRelease.text("Release: " + search.release_date);
+    
+    var newPopularity = $("<p>");
+    newPopularity.text("Popularity: " + search.popularity);
+
+    var newAvgVote = $("<p>");
+    newAvgVote.text("Average Vote: " + search.vote_average);
+
+    var watchTrailer = $("<button>");
+    watchTrailer.addClass("watch-trailer-btn btn btn-dark sm-btn");
+    watchTrailer.text("Watch the trailer");
+    watchTrailer.attr("movieID", search.id);
+
+    var newTrailer = $("<iframe>");
+    newTrailer.attr("width", "840");
+    newTrailer.attr("height", "630");
+    newTrailer.attr("src", "");
+    // attaching the movie ID to the video element so it can be located later
+    newTrailer.attr("id", search.id);
+
+    newMovieDiv.append(newTitle);
+    newMovieDiv.append(newOverview);
+    newMovieDiv.append(newRelease);
+    newMovieDiv.append(newPopularity);
+    newMovieDiv.append(newAvgVote);
+    newMovieDiv.append(watchTrailer);
+    newMovieDiv.append("<br><br>");
+    newMovieDiv.append(newTrailer);
+    newTrailer.hide();
+
+    $("#movie-results").append(newMovieDiv);
+}
+
+$(document).on("click", ".watch-trailer-btn", function() {
+    var trailerID = $(this).attr("movieID");
+    
+    var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";
+
+    // Creates AJAX call for the specific trailer button being clicked
+    $.ajax({
+        url: trailerQueryURL,
+        method: "GET"
+    }).then(function(response) {
+        // get the end of the URL from the response
+        var videoKey = (response.results[0]).key;
+        // add the key to the rest of the YouTube link
+        var youtubeLink = "https://www.youtube.com/embed/" + videoKey;
+        // change the source of the video and show the element
+        $("#" + trailerID).attr("src", youtubeLink);
+        $("#" + trailerID).show();
+        
+    });
+});
 
 // //     // Creates AJAX call for the specific movie button being clicked
 // //     $.ajax({

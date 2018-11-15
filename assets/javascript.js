@@ -50,9 +50,10 @@ function displayMovieInfo(search) {
     watchTrailer.attr("movieID", search.id);
 
     var newTrailer = $("<iframe>");
-    newTrailer.attr("width", "840");
-    newTrailer.attr("height", "630");
+    newTrailer.attr("width", "956");
+    newTrailer.attr("height", "538");
     newTrailer.attr("src", "");
+    newTrailer.attr("class", "movie-trailer")
     // attaching the movie ID to the video element so it can be located later
     newTrailer.attr("id", search.id);
 
@@ -70,6 +71,8 @@ function displayMovieInfo(search) {
 }
 
 $(document).on("click", ".watch-trailer-btn", function() {
+    // hide any previously opened trailer
+    $(".movie-trailer").hide();
     var trailerID = $(this).attr("movieID");
     
     var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";

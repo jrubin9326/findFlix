@@ -1,7 +1,9 @@
 $(".img-thumbnail").on("click", function() {
+    // clear the movies from the previous genre, if any are on the page
     $("#movie-results").empty();
+
+    // grab the value of the genre button
     var searchTerm = $(this).attr("value");
-    console.log(searchTerm);
 
     // `movieData` will hold the response object
     var movieData;
@@ -14,8 +16,7 @@ $(".img-thumbnail").on("click", function() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        // print movie list to console
-        console.log(response.results);
+        // creating a shortcut
         movieData = response.results;
 
         // show 10 results on the page
@@ -26,11 +27,6 @@ $(".img-thumbnail").on("click", function() {
 });
 
 function displayMovieInfo(search) {
-    console.log(search.overview);
-    console.log(search.release_date);
-    console.log(search.popularity);
-    console.log(search.vote_average);
-
     var newMovieDiv = $("<div>");
 
     var newTitle = $("<h5>");
@@ -48,14 +44,51 @@ function displayMovieInfo(search) {
     var newAvgVote = $("<p>");
     newAvgVote.text("Average Vote: " + search.vote_average);
 
+    var watchTrailer = $("<button>");
+    watchTrailer.addClass("watch-trailer-btn btn btn-dark sm-btn");
+    watchTrailer.text("Watch the trailer");
+    watchTrailer.attr("movieID", search.id);
+
+    var newTrailer = $("<iframe>");
+    newTrailer.attr("width", "840");
+    newTrailer.attr("height", "630");
+    newTrailer.attr("src", "");
+    // attaching the movie ID to the video element so it can be located later
+    newTrailer.attr("id", search.id);
+
     newMovieDiv.append(newTitle);
     newMovieDiv.append(newOverview);
     newMovieDiv.append(newRelease);
     newMovieDiv.append(newPopularity);
     newMovieDiv.append(newAvgVote);
+    newMovieDiv.append(watchTrailer);
+    newMovieDiv.append("<br><br>");
+    newMovieDiv.append(newTrailer);
+    newTrailer.hide();
 
     $("#movie-results").append(newMovieDiv);
 }
+
+$(document).on("click", ".watch-trailer-btn", function() {
+    var trailerID = $(this).attr("movieID");
+    
+    var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";
+
+    // Creates AJAX call for the specific trailer button being clicked
+    $.ajax({
+        url: trailerQueryURL,
+        method: "GET"
+    }).then(function(response) {
+        // get the end of the URL from the response
+        var videoKey = (response.results[0]).key;
+        // add the key to the rest of the YouTube link
+        var youtubeLink = "https://www.youtube.com/embed/" + videoKey;
+        // change the source of the video and show the element
+        $("#" + trailerID).attr("src", youtubeLink);
+        $("#" + trailerID).show();
+        
+    });
+});
 
 //global variables
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";

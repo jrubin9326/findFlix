@@ -35,6 +35,9 @@ img:hover {
     background-image: url("../images/curtain-269920_1280.jpg");
     background-size: cover;
     color: white;
+    position:relative; 
+    height:100px;
+
 }
 
 .curtain {
@@ -89,13 +92,31 @@ input[type=checkbox]:checked ~ div.curtain-rt {
 
 .curtain-lt {
     transform:translateX(-100%);
+    color:white; 
+    text-align: center;
+    align-items: center; 
 }
 
 .curtain-rt {
     transform:translateX(100%);
+    color:white; 
+    text-align:center; 
 }
-
+/* enables user to click icons*/
 input[type=checkbox]:not(:checked){
     pointer-events: none;
 } 
-
+.txt-lt{
+    text-align: right;
+    margin-top:200px;
+}
+.txt-rt {
+    text-align: left; 
+    margin-top:200px; 
+}
+h1 {
+    font-size:4em; 
+}
+.subtext {
+    font-size: 2em;
+}

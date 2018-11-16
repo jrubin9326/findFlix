@@ -7,7 +7,7 @@
 
     <link value="assets/css/tentcss/dist/tent.min.css " rel="stylesheet">
     <link rel = "stylesheet" type = "text/css" href = "assets/css/reset.css">
-   
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel = "stylesheet" type = "text/css" href= "assets/css/style.css">
@@ -37,56 +37,58 @@
             <!--left curtain-->
             <div class = "curtain-panel curtain-lt">
                 <div class = "txt-lt">
-                    <h1>Welcome &nbsp;</h1>
-                    <div class ="subtext animated bounceInDown">Get ready for some Lights, &nbsp;</div>
-                    <div class ="subtext">Click to  &nbsp;</div>
+                    <h1>Welcome&nbsp;</h1>
+                    <div class ="subtext animated bounceInDown">Get ready for some Lights,&nbsp;</div>
+                    <div class ="subtext">Click to&nbsp;</div>
                 </div>
             </div>
             <!--where icons will be displayed-->
             <div class = "curtain-feature">
                     <div class = "img-container">
-                            <img class="img-thumbnail" value="35" src="assets/images/comedy.png" alt="Comedy Image">
-                            <img class="img-thumbnail" value="18" src="assets/images/drama.jpg" alt="Drama Image">
-                            <img class="img-thumbnail" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
-                            <img class="img-thumbnail" value="27" src="assets/images/horror.png" alt="Horror img">
+                        <h2> What genre are you in the mood for? </h2>
+                        <div class = "hvrbx">
+                            <img class="img-thumbnail hvr-layer-btm" value="35" src="assets/images/comedy.png" alt="Comedy Image">
+                                <div class = "hvrbx-layer-top">
+                                    <div class ="hvrbx-text">Comedy</div>
+                                </div>
+                        </div>
+                        
+                        <div class = "hvrbx">
+                            <img class="img-thumbnail hvr-layer-btm" value="18" src="assets/images/drama.jpg" alt="Drama Image">
+                            <div class = "hvrbx-layer-top">
+                                <div class = "hvrbx-text">Drama</div>
+                            </div>
+                        </div>
+                        <div class = "hvrbx">
+                            <img class="img-thumbnail hvr-layer-btm" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
+                            <div class ="hvrbx-layer-top">
+                                <div class = "hvrbx-text">Fantasy</div>
+                            </div>
+                        </div>
+                        <div class = "hvrbx">
+                            <img class="img-thumbnail hvr-layer-btm" value="27" src="assets/images/horror.png" alt="Horror img">
+                            <div class = "hvrbx-layer-top">
+                                <div class = "hvrbx-text">Horror</div>
+                            </div>
+                        </div>
                             <div class="row" id="movie-results">
+
                                     <!-- going to put the results list here, hidden by default and shown when genre is selected -->
                             </div>
+                        
                         </div>
             </div>
             <!--left curtain-->
             <div class = "curtain-panel curtain-rt">
                 <div class = "txt-rt">
-                    <h1>to Findflix</h1>
+                    <h1> to Findflix</h1>
                     <div class ="subtext animated bounceInDown">Camera, and SHOWTIME</div>
-                    <div class = "subtext">get started!</div>
+                    <div class = "subtext"> get started!</div>
                 </div>
             </div>
         </div> <!--curtain-wrapper-->
     </div> <!--curtain-->
         
-    <!-- </div>
-    <div class="jumbotron text-center">
-        <h1 class="type-bold">Welcome to Findflix</h1>
-        <h3 class="animated bounceInDown">Get ready for some Lights, Camera and SHOWTIME!</h3>
-        <br>
-        <h5 class="animated pulse delay-2s">Get started by picking a genre!</h5>
-    </div>
-    <div class="container">
-        
-
-        <br>
-
-        <span>Location: </span><input type = "text" id = "locationtxt" placeholder = "your location">
-        <button class="btn btn-dark" id="location-submit">Submit</button>
-
-        <br>
-        
-        <div class="row" id="movie-results">
-            going to put the results list here, hidden by default and shown when genre is selected -->
-        <!-- </div>
-
-    </div> --> 
 
     <!--link to axios-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

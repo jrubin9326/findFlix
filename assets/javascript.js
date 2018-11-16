@@ -50,9 +50,10 @@ function displayMovieInfo(search) {
     watchTrailer.attr("movieID", search.id);
 
     var newTrailer = $("<iframe>");
-    newTrailer.attr("width", "840");
-    newTrailer.attr("height", "630");
+    newTrailer.attr("width", "956");
+    newTrailer.attr("height", "538");
     newTrailer.attr("src", "");
+    newTrailer.attr("class", "movie-trailer")
     // attaching the movie ID to the video element so it can be located later
     newTrailer.attr("id", search.id);
 
@@ -70,6 +71,8 @@ function displayMovieInfo(search) {
 }
 
 $(document).on("click", ".watch-trailer-btn", function() {
+    // hide any previously opened trailer
+    $(".movie-trailer").hide();
     var trailerID = $(this).attr("movieID");
     
     var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";
@@ -169,17 +172,22 @@ geolocation()
 //   })
 
 
-var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
+var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
 
- $.ajax({
-        url: movieURl,
-        method: "GET"
-    }).then(function(response){
-        console.log(response)
-    }).catch(function(error){
-        console.log(error)
-    }); 
+//  $.ajax({
+//         url: movieURl,
+//         method: "GET"
+//     }).then(function(response){
+//         console.log(response)
+//     }).catch(function(error){
+//         console.log(error)
+//     }); 
     
 
 
     // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
+   
+
+    const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
+
+    const amcURL = "/v2/theatres"

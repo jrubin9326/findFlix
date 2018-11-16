@@ -36,3 +36,66 @@ img:hover {
     background-size: cover;
     color: white;
 }
+
+.curtain {
+    width:100%; 
+    height: 100vh; 
+    overflow:hidden; 
+}
+
+.curtain__wrapper {
+    width:100%; 
+    height:100%; 
+}
+
+.curtain-panel {
+    background-image: url("../images/moviecurtain.jpg");
+    background-size:cover; 
+    width:50%; /*each panel should take up 1/2 of container*/
+    height: 100vh;
+    float:left; 
+    position:relative; 
+    z-index:2; /*places panel in front of icons*/
+    transition: all 2s ease-out; 
+}
+
+
+.curtain-feature{
+    background: #444; 
+    position:absolute; 
+    z-index:1; /* places feature behind curtain panels*/
+    width:100%;
+    height:100%; 
+}
+
+input[type=checkbox] {
+    position:absolute;
+    cursor: pointer;
+    width:100%; 
+    height:100%;
+    z-index:100;
+    opacity:0; /*hides element*/
+}
+
+/* slide LT panel in*/
+input[type=checkbox]:checked ~ div.curtain-lt {
+    transform:translateX(0);
+}
+
+/*slide RT panel in*/
+input[type=checkbox]:checked ~ div.curtain-rt {
+    transform:translateX(0); 
+}
+
+.curtain-lt {
+    transform:translateX(-100%);
+}
+
+.curtain-rt {
+    transform:translateX(100%);
+}
+
+input[type=checkbox]:not(:checked){
+    pointer-events: none;
+} 
+

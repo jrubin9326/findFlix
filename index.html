@@ -12,17 +12,45 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel = "stylesheet" type = "text/css" href= "assets/css/style.css">
 
+    <!--Animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
     <!-- something might be wrong with this script link, I was using it for the hw and had some issues -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
     <title>findflix</title>
 </head>   
 <body>
+    <!-- parent-->
+    <div class ="curtain">
+        <!--component wrapper-->
+        <div class = "curtain-wrapper">
+            <!--will not be visible on pg-->
+            <input type ="checkbox" checked>
+            <!--left curtain-->
+            <div class = "curtain-panel curtain-lt">
+            </div>
+            <!--where icons will be displayed-->
+            <div class = "curtain-feature">
+                    <div class = "img-container">
+                            <img class="img-thumbnail" value="35" src="assets/images/comedy.png" alt="Comedy Image">
+                            <img class="img-thumbnail" value="18" src="assets/images/drama.jpg" alt="Drama Image">
+                            <img class="img-thumbnail" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
+                            <img class="img-thumbnail" value="27" src="assets/images/horror.png" alt="Horror img">
+                        </div>
+            </div>
+            <!--left curtain-->
+            <div class = "curtain-panel curtain-rt">
+            </div>
+        </div> <!--curtain-wrapper-->
+    </div> <!--curtain-->
+        
+    </div>
     <div class="jumbotron text-center">
         <h1 class="type-bold">Welcome to Findflix</h1>
-        <h3>Get ready for some Lights, Camera and SHOWTIME!</h3>
+        <h3 class="animated bounceInDown">Get ready for some Lights, Camera and SHOWTIME!</h3>
         <br>
-        <h5>Get started by picking a genre!</h5>
+        <h5 class="animated pulse delay-2s">Get started by picking a genre!</h5>
     </div>
     <div class="container">
         <div class = "img-container">

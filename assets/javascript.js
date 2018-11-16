@@ -93,11 +93,21 @@ $(document).on("click", ".watch-trailer-btn", function() {
     });
 });
 
-//global variables
+// //     // Creates AJAX call for the specific movie button being clicked
+// //     $.ajax({
+// //         url: queryURL,
+// //         method: "GET"
+// //     }).then(function(response) {
+// //         // print movie list to console
+// //         console.log(response.results);
+// //     });
+// // }
+// }
+// //global variables
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
 
-// var latitude;
-// var longitude;
+var latitude;
+var longitude;
 
 
 $("#location-submit").on("click", function() {
@@ -108,29 +118,30 @@ $("#location-submit").on("click", function() {
     geolocation();
 });
 
-// making a GET request to get user lat & long from user location
-// function geolocation() {
-//     location = '20 W 34th St New York NY 10001'    
-//     axios.get(googleURL, {
-//         params: {
-//             address: location,
-//             key : 'AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o'
-//         }
-//     })
-//     .then(function(response){
-//     // latitude 
-//         latitude = response.data.results[0].geometry.location.lat;
-//         console.log(latitude)
-//         //longitude 
-//         longitude = response.data.results[0].geometry.location.lng;
-//         console.log(longitude)
-//     })  
-//     .catch (function(error){
-//         alert("Sorry, there was a geolocation error: " + error)
-//     });
-// }
+// // making a GET request to get user lat & long from user location
+function geolocation() {
+    let loc = '22 Main st Boston MA'    
+    axios.get(googleURL, {
+        params: {
+            address: loc,
+            key : 'AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o'
+        }
+    })
+    .then(function(response){
+        console.log(response);
+    // latitude 
+        latitude = response.data.results[0].geometry.location.lat;
+        console.log(latitude)
+        //longitude 
+        longitude = response.data.results[0].geometry.location.lng;
+        console.log(longitude)
+    })  
+    .catch (function(error){
+        alert("Sorry, there was a geolocation error: " + error)
+    });
+}; 
 
-// geolocation()
+geolocation()
 // var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o"
 
 // $.ajax({
@@ -145,17 +156,38 @@ $("#location-submit").on("click", function() {
 
 //postman code that finds movie theaters based on the users 
 //latitude and longitude 
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o",
-    "method": "GET",
-    "headers": {
-      "cache-control": "no-cache",
-      "Postman-Token": "4a0e93a6-67e7-4e35-a1e8-32260d88929b"
-    }
-  }
+// var settings = {
+//     "async": true,
+//     "crossDomain": true,
+//     "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o",
+//     "method": "GET",
+//     "headers": {
+//       "cache-control": "no-cache",
+//       "Postman-Token": "4a0e93a6-67e7-4e35-a1e8-32260d88929b"
+//     }
+//   }
   
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
+//   $.ajax(settings).done(function (response) {
+//     console.log(response);
+//   })
+
+
+var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
+
+//  $.ajax({
+//         url: movieURl,
+//         method: "GET"
+//     }).then(function(response){
+//         console.log(response)
+//     }).catch(function(error){
+//         console.log(error)
+//     }); 
+    
+
+
+    // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
+   
+
+    const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
+
+    const amcURL = "/v2/theatres"

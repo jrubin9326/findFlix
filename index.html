@@ -21,6 +21,31 @@
     <title>findflix</title>
 </head>   
 <body>
+    <!-- parent-->
+    <div class ="curtain">
+        <!--component wrapper-->
+        <div class = "curtain-wrapper">
+            <!--will not be visible on pg-->
+            <input type ="checkbox" checked>
+            <!--left curtain-->
+            <div class = "curtain-panel curtain-lt">
+            </div>
+            <!--where icons will be displayed-->
+            <div class = "curtain-feature">
+                    <div class = "img-container">
+                            <img class="img-thumbnail" value="35" src="assets/images/comedy.png" alt="Comedy Image">
+                            <img class="img-thumbnail" value="18" src="assets/images/drama.jpg" alt="Drama Image">
+                            <img class="img-thumbnail" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
+                            <img class="img-thumbnail" value="27" src="assets/images/horror.png" alt="Horror img">
+                        </div>
+            </div>
+            <!--left curtain-->
+            <div class = "curtain-panel curtain-rt">
+            </div>
+        </div> <!--curtain-wrapper-->
+    </div> <!--curtain-->
+        
+    </div>
     <div class="jumbotron text-center">
         <h1 class="type-bold">Welcome to Findflix</h1>
         <h3 class="animated bounceInDown">Get ready for some Lights, Camera and SHOWTIME!</h3>
@@ -50,6 +75,8 @@
 
     <!--link to axios-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--google maps APi-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o&libraries=places"></script>
     <!--link to jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <!--link to local js file-->  

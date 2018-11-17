@@ -1,4 +1,4 @@
-$(".img-thumbnail").on("click", function() {
+$(".hvrbx-layer-top ").on("click", function() {
     // clear the movies from the previous genre, if any are on the page
     $("#movie-results").empty();
 

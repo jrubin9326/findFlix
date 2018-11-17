@@ -61,16 +61,17 @@
                             <div class = "hvrbx-text">Drama</div>
                         </div>
                     </div>
-                    <div class = "hvrbx">
-                        <img class="img-thumbnail hvr-layer-btm" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
-                        <div class ="hvrbx-layer-top" value="14">
-                            <div class = "hvrbx-text">Fantasy</div>
+                        <div class = "hvrbx">
+                            <img class="img-thumbnail hvr-layer-btm" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
+                            <div class ="hvrbx-layer-top" value="14">
+                                <div class = "hvrbx-text">Fantasy</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class = "hvrbx">
-                        <img class="img-thumbnail hvr-layer-btm" value="27" src="assets/images/horror.png" alt="Horror img">
-                        <div class = "hvrbx-layer-top" value="27">
-                            <div class = "hvrbx-text">Horror</div>
+                        <div class = "hvrbx" >
+                            <img class="img-thumbnail hvr-layer-btm" value="27" src="assets/images/horror.png" alt="Horror img">
+                            <div class = "hvrbx-layer-top" value = "27">
+                                <div class = "hvrbx-text" >Horror</div>
+                            </div>
                         </div>
                     </div>
                     <div class = "hvrbx">
@@ -156,7 +157,13 @@
                         <div class = "hvrbx-layer-top" value="37">
                             <div class = "hvrbx-text">Western</div>
                         </div>
-                    </div>                    
+                    </div>    
+                    <form>
+                        Input your location, to find nearest movie theater!
+                        <input id = "locationText" type = "text" name ="location">
+                        <input type = "submit" id = "location-submit">
+                    </form>             
+                    <div id = "nearestCinema"></div>
                 </div>
             </div>
             <!--left curtain-->

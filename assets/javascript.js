@@ -172,7 +172,7 @@ geolocation()
 //   })
 
 
-var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
+var movieURl = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
 
 //  $.ajax({
 //         url: movieURl,
@@ -190,4 +190,28 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
 
     const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
 
-    const amcURL = "/v2/theatres"
+    const amcURL = "https://cors-anywhere.herokuapp.com/https://api.amctheatres.com/v2/locations?latitude=40.758896&longitude=-73.985130"
+
+    $.ajax({
+        url:amcURL,
+        method: "GET",
+        headers: {
+            "X-AMC-Vendor-Key":"507E4606-B4A4-4596-8D74-F3BEF579E901"
+        }
+    }).then(function(response){
+        console.log(response)
+    }).catch(function(error){
+
+    })
+
+    // axios.get(amcURL, {
+    //     headers: {
+    //         "X-AMC-Vendor-Key":"507E4606-B4A4-4596-8D74-F3BEF579E901",
+    //     }
+    // })
+    // .then(function(error){
+    //     console.log(error)
+    // })
+    // .catch(err => {
+    //     console.log(err)
+    // })

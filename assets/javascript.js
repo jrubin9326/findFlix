@@ -203,3 +203,23 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     messagingSenderId: "122843347744"
   };
   firebase.initializeApp(config);
+
+    // //Create a variable to reference the database
+    // var database = firebase.database();
+    // console.log(database)
+
+    // var userLocation = {
+    //     locationOfRequester: loc,
+    // }
+    
+    // //upload the user's location data input to firebase
+    // database.ref().push(userLocation);
+
+    // console.log("Firebase location value stored: " + userLocation.locationOfRequester)
+
+    // database.ref().on("child_added", function(childSnaphot) {
+    //     console.log(childSnaphot.val());
+    
+    //     var loc = childSnaphot.val().locationOfRequester;
+    //     console.log(loc)
+    // })

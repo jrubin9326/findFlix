@@ -202,7 +202,8 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     storageBucket: "groupproject-9d9bb.appspot.com",
     messagingSenderId: "122843347744"
   };
-  firebase.initializeApp(config);
+  
+    firebase.initializeApp(config);
 
     // //Create a variable to reference the database
     // var database = firebase.database();

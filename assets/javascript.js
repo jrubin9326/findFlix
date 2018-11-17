@@ -29,7 +29,7 @@ $(".hvrbx-layer-top").on("click", function() {
 function displayMovieInfo(search) {
     var newMovieDiv = $("<div>");
 
-    var newTitle = $("<h5>");
+    var newTitle = $("<h4>");
     newTitle.text(search.title);
     
     var newOverview = $("<p>");

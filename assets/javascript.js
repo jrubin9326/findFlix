@@ -18,6 +18,7 @@ $(".hvrbx-layer-top").on("click", function() {
     }).then(function(response) {
         // creating a shortcut
         movieData = response.results;
+        console.log(movieData)
 
         // show 10 results on the page
         for (var i = 0; i < 10; i ++) {
@@ -93,34 +94,20 @@ $(document).on("click", ".watch-trailer-btn", function() {
     });
 });
 
-// //     // Creates AJAX call for the specific movie button being clicked
-// //     $.ajax({
-// //         url: queryURL,
-// //         method: "GET"
-// //     }).then(function(response) {
-// //         // print movie list to console
-// //         console.log(response.results);
-// //     });
-// // }
-// }
-// //global variables
+
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
-
-var latitude;
-var longitude;
-
+var loc;
 
 $("#location-submit").on("click", function() {
     event.preventDefault();
-    var location =  $("#locationtxt").val().trim()
-
-    //call function
-    geolocation();
+    
+    geolocation()
+    
 });
 
 // // making a GET request to get user lat & long from user location
 function geolocation() {
-    let loc = '22 Main st Boston MA'    
+    loc =  $("#locationText").val().trim()   
     axios.get(googleURL, {
         params: {
             address: loc,
@@ -130,88 +117,57 @@ function geolocation() {
     .then(function(response){
         console.log(response);
     // latitude 
-        latitude = response.data.results[0].geometry.location.lat;
+        const latitude = response.data.results[0].geometry.location.lat;
         console.log(latitude)
         //longitude 
-        longitude = response.data.results[0].geometry.location.lng;
+        const longitude = response.data.results[0].geometry.location.lng;
         console.log(longitude)
-    })  
-    .catch (function(error){
-        alert("Sorry, there was a geolocation error: " + error)
-    });
-}; 
-
-geolocation()
-// var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o"
-
-// $.ajax({
-//     url: movieURl,
-//     method: "GET"
-// }).then(function(response){
-//     console.log(response)
-// }).catch(function(error){
-//     console.log(error)
-// }); 
-
-
-//postman code that finds movie theaters based on the users 
-//latitude and longitude 
-// var settings = {
-//     "async": true,
-//     "crossDomain": true,
-//     "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o",
-//     "method": "GET",
-//     "headers": {
-//       "cache-control": "no-cache",
-//       "Postman-Token": "4a0e93a6-67e7-4e35-a1e8-32260d88929b"
-//     }
-//   }
-  
-//   $.ajax(settings).done(function (response) {
-//     console.log(response);
-//   })
-
-
-var movieURl = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
-
-//  $.ajax({
-//         url: movieURl,
-//         method: "GET"
-//     }).then(function(response){
-//         console.log(response)
-//     }).catch(function(error){
-//         console.log(error)
-//     }); 
-    
-
-
-    // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
-   
-
-    const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
-
-    const amcURL = "https://cors-anywhere.herokuapp.com/https://api.amctheatres.com/v2/locations?latitude=40.758896&longitude=-73.985130"
-
-    $.ajax({
-        url:amcURL,
-        method: "GET",
-        headers: {
-            "X-AMC-Vendor-Key":"507E4606-B4A4-4596-8D74-F3BEF579E901"
-        }
+     
+        var movieURl = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latitude+","+longitude+"&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
+        console.log(movieURl, "hi")
+        $.ajax({
+        url: movieURl,
+        method: "GET"
     }).then(function(response){
-        console.log(response)
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<")
+        console.log(response.results[0].name)
+        movieLocation = response.results[0].name; 
     }).catch(function(error){
+        console.log(error)
+    }); 
+})
+}
 
-    })
+ 
 
-    // axios.get(amcURL, {
-    //     headers: {
-    //         "X-AMC-Vendor-Key":"507E4606-B4A4-4596-8D74-F3BEF579E901",
-    //     }
-    // })
-    // .then(function(error){
-    //     console.log(error)
-    // })
-    // .catch(err => {
-    //     console.log(err)
+
+      // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyAkczBlIpMSF88zPyDTKtewrb7P7Vf9JH0",
+//     authDomain: "groupproject-9d9bb.firebaseapp.com",
+//     databaseURL: "https://groupproject-9d9bb.firebaseio.com",
+//     projectId: "groupproject-9d9bb",
+//     storageBucket: "groupproject-9d9bb.appspot.com",
+//     messagingSenderId: "122843347744"
+//   };
+//     firebase.initializeApp(config);
+
+//     // //Create a variable to reference the database
+//     var database = firebase.database();
+    // console.log(database)
+
+    // var userLocation = {
+    //     locationOfRequester: loc,
+    // }
+    
+    // //upload the user's location data input to firebase
+    // database.ref().push(userLocation);
+
+    // console.log("Firebase location value stored: " + userLocation.locationOfRequester)
+
+    // database.ref().on("child_added", function(childSnaphot) {
+    //     console.log(childSnaphot.val());
+    
+    //     var loc = childSnaphot.val().locationOfRequester;
+    //     console.log(loc)
     // })

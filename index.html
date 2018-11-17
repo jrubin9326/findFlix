@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link value="assets/css/tentcss/dist/tent.min.css " rel="stylesheet">
     <link rel = "stylesheet" type = "text/css" href = "assets/css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -156,7 +157,13 @@
                         <div class = "hvrbx-layer-top" value="37">
                             <div class = "hvrbx-text">Western</div>
                         </div>
-                    </div>                    
+                    </div>    
+                    <form>
+                        Input your location, to find nearest movie theater!
+                        <input id = "locationText" type = "text" name ="location">
+                        <input type = "submit" id = "location-submit">
+                    </form>             
+                    <div id = "nearestCinema"></div>
                 </div>
             </div>
             <!--left curtain-->
@@ -186,5 +193,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <!--link to local js file-->  
     <script src = "assets/javascript.js"></script>
+    <!--Link to Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 </body>
 </html>

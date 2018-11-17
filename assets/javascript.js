@@ -1,6 +1,12 @@
+// $(document).on("click", ".hvrbx-layer-top", function() {
+//     var offset = $("#movie-results").offset()
+//     $("body").scrollBottom(offset.bottom);
+// })
+
+
 $(".hvrbx-layer-top").on("click", function() {
     // clear the movies from the previous genre, if any are on the page
-    $("#movie-results").empty();
+    $("#movie-results").empty();  
 
     // grab the value of the genre button
     var searchTerm = $(this).attr("value");
@@ -68,7 +74,9 @@ function displayMovieInfo(search) {
     newMovieDiv.append(newTrailer);
     newTrailer.hide();
 
-    $("#movie-results").append(newMovieDiv);
+    $("#movie-results").append(newMovieDiv); 
+    var offset = $("#movie-results").offset();
+    window.scroll(0, offset.top);
 }
 
 $(document).on("click", ".watch-trailer-btn", function() {
@@ -224,4 +232,5 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     
         var loc = childSnaphot.val().locationOfRequester;
         console.log(loc)
+
     })

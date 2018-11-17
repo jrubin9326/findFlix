@@ -1,6 +1,12 @@
+// $(document).on("click", ".hvrbx-layer-top", function() {
+//     var offset = $("#movie-results").offset()
+//     $("body").scrollBottom(offset.bottom);
+// })
+
+
 $(".hvrbx-layer-top").on("click", function() {
     // clear the movies from the previous genre, if any are on the page
-    $("#movie-results").empty();
+    $("#movie-results").empty();  
 
     // grab the value of the genre button
     var searchTerm = $(this).attr("value");
@@ -18,6 +24,7 @@ $(".hvrbx-layer-top").on("click", function() {
     }).then(function(response) {
         // creating a shortcut
         movieData = response.results;
+        console.log(movieData)
 
         // show 10 results on the page
         for (var i = 0; i < 10; i ++) {
@@ -67,7 +74,9 @@ function displayMovieInfo(search) {
     newMovieDiv.append(newTrailer);
     newTrailer.hide();
 
-    $("#movie-results").append(newMovieDiv);
+    $("#movie-results").append(newMovieDiv); 
+    var offset = $("#movie-results").offset();
+    window.scroll(0, offset.top);
 }
 
 $(document).on("click", ".watch-trailer-btn", function() {
@@ -191,3 +200,47 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
 
     const amcURL = "/v2/theatres"
+
+      // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAkczBlIpMSF88zPyDTKtewrb7P7Vf9JH0",
+    authDomain: "groupproject-9d9bb.firebaseapp.com",
+    databaseURL: "https://groupproject-9d9bb.firebaseio.com",
+    projectId: "groupproject-9d9bb",
+    storageBucket: "groupproject-9d9bb.appspot.com",
+    messagingSenderId: "122843347744"
+  };
+  
+    firebase.initializeApp(config);
+
+    //Create a variable to reference the database
+    var database = firebase.database();
+     var userLocation = {
+        locationOfRequester: movielocation,
+    }
+    var userStoredLocation;
+    console.log(database)
+    database.ref().push( {
+       userStoredLocation: userLocation.locationOfRequester
+    })
+
+
+    console.log("Firebase location value stored: " + userStoredLocation)
+
+    database.ref().on("child_added", function(childSnaphot) {
+        console.log(childSnaphot.val());
+    
+        var loc = childSnaphot.val().locationOfRequester;
+        console.log(loc)
+    })  
+    
+
+    
+
+
+    // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
+   
+
+    // const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
+
+    // const amcURL = "/v2/theatres"

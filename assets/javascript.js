@@ -232,15 +232,5 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     
         var loc = childSnaphot.val().locationOfRequester;
         console.log(loc)
-    })  
-    
 
-    
-
-
-    // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
-   
-
-    // const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
-
-    // const amcURL = "/v2/theatres"
+    })

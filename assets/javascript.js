@@ -34,7 +34,22 @@ $(".hvrbx-layer-top").on("click", function() {
 });
 
 function displayMovieInfo(search) {
-    var newMovieDiv = $("<div>");
+    var newRow = $("<div>");
+    newRow.addClass("row");
+    
+    var posterCol = $("<div>");
+    posterCol.addClass("col-lg-4");
+    var detailsCol = $("<div>");
+    detailsCol.addClass("col-lg-8");
+
+    var movieImage = $("<img>")
+    var moviePoster = search.poster_path
+    console.log(moviePoster)
+    var moviePosterUrl = "https://image.tmdb.org/t/p/w300" + moviePoster
+    console.log(moviePosterUrl)
+    movieImage.attr("src", moviePosterUrl)
+
+    // var detailsCol = $("<div>");
 
     var newTitle = $("<h4>");
     newTitle.text(search.title);
@@ -64,17 +79,25 @@ function displayMovieInfo(search) {
     // attaching the movie ID to the video element so it can be located later
     newTrailer.attr("id", search.id);
 
-    newMovieDiv.append(newTitle);
-    newMovieDiv.append(newOverview);
-    newMovieDiv.append(newRelease);
-    newMovieDiv.append(newPopularity);
-    newMovieDiv.append(newAvgVote);
-    newMovieDiv.append(watchTrailer);
-    newMovieDiv.append("<br><br>");
-    newMovieDiv.append(newTrailer);
+    posterCol.append(movieImage);
+
+    detailsCol.append(newTitle);
+    detailsCol.append(newOverview);
+    detailsCol.append(newRelease);
+    detailsCol.append(newPopularity);
+    detailsCol.append(newAvgVote);
+    detailsCol.append(watchTrailer);
+    detailsCol.append("<br><br>");
+    detailsCol.append(newTrailer);
     newTrailer.hide();
 
-    $("#movie-results").append(newMovieDiv); 
+    newRow.append(posterCol);
+    newRow.append(detailsCol);
+
+    $("#movie-results").append("<br>");
+    $("#movie-results").append(newRow);
+    $("#movie-results").append("<br>");
+
     var offset = $("#movie-results").offset();
     window.scroll(0, offset.top);
 }

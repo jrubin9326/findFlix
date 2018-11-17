@@ -156,18 +156,12 @@ function geolocation() {
 //     var database = firebase.database();
     // console.log(database)
 
-    // var userLocation = {
-    //     locationOfRequester: loc,
-    // }
-    
-    // //upload the user's location data input to firebase
-    // database.ref().push(userLocation);
 
-    // console.log("Firebase location value stored: " + userLocation.locationOfRequester)
+    console.log("Firebase location value stored: " + userStoredLocation)
 
-    // database.ref().on("child_added", function(childSnaphot) {
-    //     console.log(childSnaphot.val());
+    database.ref().on("child_added", function(childSnaphot) {
+        console.log(childSnaphot.val());
     
-    //     var loc = childSnaphot.val().locationOfRequester;
-    //     console.log(loc)
-    // })
+        var loc = childSnaphot.val().locationOfRequester;
+        console.log(loc)
+    })

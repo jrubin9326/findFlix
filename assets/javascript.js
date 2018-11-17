@@ -1,7 +1,9 @@
-$(".img-thumbnail").on("click", function() {
+$(".hvrbx-layer-top").on("click", function() {
+    // clear the movies from the previous genre, if any are on the page
     $("#movie-results").empty();
+
+    // grab the value of the genre button
     var searchTerm = $(this).attr("value");
-    console.log(searchTerm);
 
     // `movieData` will hold the response object
     var movieData;
@@ -14,8 +16,7 @@ $(".img-thumbnail").on("click", function() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        // print movie list to console
-        console.log(response.results);
+        // creating a shortcut
         movieData = response.results;
 
         // show 10 results on the page
@@ -26,11 +27,6 @@ $(".img-thumbnail").on("click", function() {
 });
 
 function displayMovieInfo(search) {
-    console.log(search.overview);
-    console.log(search.release_date);
-    console.log(search.popularity);
-    console.log(search.vote_average);
-
     var newMovieDiv = $("<div>");
 
     var newTitle = $("<h5>");
@@ -48,20 +44,70 @@ function displayMovieInfo(search) {
     var newAvgVote = $("<p>");
     newAvgVote.text("Average Vote: " + search.vote_average);
 
+    var watchTrailer = $("<button>");
+    watchTrailer.addClass("watch-trailer-btn btn btn-dark sm-btn");
+    watchTrailer.text("Watch the trailer");
+    watchTrailer.attr("movieID", search.id);
+
+    var newTrailer = $("<iframe>");
+    newTrailer.attr("width", "956");
+    newTrailer.attr("height", "538");
+    newTrailer.attr("src", "");
+    newTrailer.attr("class", "movie-trailer")
+    // attaching the movie ID to the video element so it can be located later
+    newTrailer.attr("id", search.id);
+
     newMovieDiv.append(newTitle);
     newMovieDiv.append(newOverview);
     newMovieDiv.append(newRelease);
     newMovieDiv.append(newPopularity);
     newMovieDiv.append(newAvgVote);
+    newMovieDiv.append(watchTrailer);
+    newMovieDiv.append("<br><br>");
+    newMovieDiv.append(newTrailer);
+    newTrailer.hide();
 
     $("#movie-results").append(newMovieDiv);
 }
 
-//global variables
+$(document).on("click", ".watch-trailer-btn", function() {
+    // hide any previously opened trailer
+    $(".movie-trailer").hide();
+    var trailerID = $(this).attr("movieID");
+    
+    var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";
+
+    // Creates AJAX call for the specific trailer button being clicked
+    $.ajax({
+        url: trailerQueryURL,
+        method: "GET"
+    }).then(function(response) {
+        // get the end of the URL from the response
+        var videoKey = (response.results[0]).key;
+        // add the key to the rest of the YouTube link
+        var youtubeLink = "https://www.youtube.com/embed/" + videoKey;
+        // change the source of the video and show the element
+        $("#" + trailerID).attr("src", youtubeLink);
+        $("#" + trailerID).show();
+        
+    });
+});
+
+// //     // Creates AJAX call for the specific movie button being clicked
+// //     $.ajax({
+// //         url: queryURL,
+// //         method: "GET"
+// //     }).then(function(response) {
+// //         // print movie list to console
+// //         console.log(response.results);
+// //     });
+// // }
+// }
+// //global variables
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
 
-// var latitude;
-// var longitude;
+var latitude;
+var longitude;
 
 
 $("#location-submit").on("click", function() {
@@ -72,29 +118,30 @@ $("#location-submit").on("click", function() {
     geolocation();
 });
 
-// making a GET request to get user lat & long from user location
-// function geolocation() {
-//     location = '20 W 34th St New York NY 10001'    
-//     axios.get(googleURL, {
-//         params: {
-//             address: location,
-//             key : 'AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o'
-//         }
-//     })
-//     .then(function(response){
-//     // latitude 
-//         latitude = response.data.results[0].geometry.location.lat;
-//         console.log(latitude)
-//         //longitude 
-//         longitude = response.data.results[0].geometry.location.lng;
-//         console.log(longitude)
-//     })  
-//     .catch (function(error){
-//         alert("Sorry, there was a geolocation error: " + error)
-//     });
-// }
+// // making a GET request to get user lat & long from user location
+function geolocation() {
+    let loc = '22 Main st Boston MA'    
+    axios.get(googleURL, {
+        params: {
+            address: loc,
+            key : 'AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o'
+        }
+    })
+    .then(function(response){
+        console.log(response);
+    // latitude 
+        latitude = response.data.results[0].geometry.location.lat;
+        console.log(latitude)
+        //longitude 
+        longitude = response.data.results[0].geometry.location.lng;
+        console.log(longitude)
+    })  
+    .catch (function(error){
+        alert("Sorry, there was a geolocation error: " + error)
+    });
+}; 
 
-// geolocation()
+geolocation()
 // var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o"
 
 // $.ajax({
@@ -109,17 +156,38 @@ $("#location-submit").on("click", function() {
 
 //postman code that finds movie theaters based on the users 
 //latitude and longitude 
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o",
-    "method": "GET",
-    "headers": {
-      "cache-control": "no-cache",
-      "Postman-Token": "4a0e93a6-67e7-4e35-a1e8-32260d88929b"
-    }
-  }
+// var settings = {
+//     "async": true,
+//     "crossDomain": true,
+//     "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o",
+//     "method": "GET",
+//     "headers": {
+//       "cache-control": "no-cache",
+//       "Postman-Token": "4a0e93a6-67e7-4e35-a1e8-32260d88929b"
+//     }
+//   }
   
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
+//   $.ajax(settings).done(function (response) {
+//     console.log(response);
+//   })
+
+
+var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%2040.758896,-73.985130&radius=1500&type=movie_theater&name=fantastic&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
+
+//  $.ajax({
+//         url: movieURl,
+//         method: "GET"
+//     }).then(function(response){
+//         console.log(response)
+//     }).catch(function(error){
+//         console.log(error)
+//     }); 
+    
+
+
+    // let locationBias: {radius: 100, center: {lat:40.758896, lng: -73.985130}}
+   
+
+    const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
+
+    const amcURL = "/v2/theatres"

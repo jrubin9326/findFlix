@@ -16,6 +16,60 @@
  
 }
 
+.hvrbx,
+.hvrbx * {
+    box-sizing: border-box; 
+}
+.hvrbx {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 100%;
+    height:auto;
+}
+
+.hvrbx img {
+    max-width:100%; 
+}
+
+.hvrbx .hvrbx-layer btm {
+    display:block;
+}
+.hvrbx .hvrbx-layer-top {
+    opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 15px;
+	-moz-transition: all 0.4s ease-in-out 0s;
+	-webkit-transition: all 0.4s ease-in-out 0s;
+	-ms-transition: all 0.4s ease-in-out 0s;
+	transition: all 0.4s ease-in-out 0s;
+}
+
+.hvrbx:hover .hvrbx-layer-top, 
+.hvrbx.active .hvrbx-layer-top {
+    opacity:1; 
+}
+
+.hvrbx .hvrbx-text {
+    text-align: center;
+	font-size: 18px;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
 .two {
     margin-right:90px; 
 }
@@ -29,4 +83,87 @@
 }
 img:hover {
     box-shadow: 0 0 2px 1px rgba(58, 223, 86, 0.5);
+}
+
+
+.curtain {
+    width:100%; 
+    height: 100vh; 
+    overflow:hidden; 
+}
+
+.curtain__wrapper {
+    width:100%; 
+    height:100%; 
+    font-family: 'Lato', sans-serif;
+}
+
+.curtain-panel {
+    background-image: url("../images/moviecurtain.jpg");
+    background-size:cover; 
+    width:50%; /*each panel should take up 1/2 of container*/
+    height: 100vh;
+    float:left; 
+    position:relative; 
+    z-index:2; /*places panel in front of icons*/
+    transition: all 2s ease-out; 
+}
+
+
+.curtain-feature{
+    background: #444; 
+    position:absolute; 
+    z-index:1; /* places feature behind curtain panels*/
+    width:100%;
+    height:100%; 
+}
+
+input[type=checkbox] {
+    position:absolute;
+    cursor: pointer;
+    width:100%; 
+    height:100%;
+    z-index:100;
+    opacity:0; /*hides element*/
+}
+
+/* slide LT panel in*/
+input[type=checkbox]:checked ~ div.curtain-lt {
+    transform:translateX(0);
+}
+
+/*slide RT panel in*/
+input[type=checkbox]:checked ~ div.curtain-rt {
+    transform:translateX(0); 
+}
+
+.curtain-lt {
+    transform:translateX(-100%);
+    color:white; 
+    text-align: center;
+    align-items: center; 
+}
+
+.curtain-rt {
+    transform:translateX(100%);
+    color:white; 
+    text-align:center; 
+}
+/* enables user to click icons*/
+input[type=checkbox]:not(:checked){
+    pointer-events: none;
+} 
+.txt-lt{
+    text-align: right;
+    margin-top:200px;
+}
+.txt-rt {
+    text-align: left; 
+    margin-top:200px; 
+}
+h1 {
+    font-size:4em; 
+}
+.subtext {
+    font-size: 2em;
 }

@@ -209,7 +209,7 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     // console.log(database)
 
     // var userLocation = {
-    //     locationOfRequester: location,
+    //     locationOfRequester: loc,
     // }
     
     // //upload the user's location data input to firebase
@@ -220,6 +220,6 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     // database.ref().on("child_added", function(childSnaphot) {
     //     console.log(childSnaphot.val());
     
-    //     var location = childSnaphot.val().locationOfRequester;
-    //     console.log(location)
+    //     var loc = childSnaphot.val().locationOfRequester;
+    //     console.log(loc)
     // })

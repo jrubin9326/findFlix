@@ -205,22 +205,23 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
   
     firebase.initializeApp(config);
 
-    // //Create a variable to reference the database
-    // var database = firebase.database();
-    // console.log(database)
+    //Create a variable to reference the database
+    var database = firebase.database();
+     var userLocation = {
+        locationOfRequester: movielocation,
+    }
+    var userStoredLocation;
+    console.log(database)
+    database.ref().push( {
+       userStoredLocation: userLocation.locationOfRequester
+    })
 
-    // var userLocation = {
-    //     locationOfRequester: loc,
-    // }
+
+    console.log("Firebase location value stored: " + userStoredLocation)
+
+    database.ref().on("child_added", function(childSnaphot) {
+        console.log(childSnaphot.val());
     
-    // //upload the user's location data input to firebase
-    // database.ref().push(userLocation);
-
-    // console.log("Firebase location value stored: " + userLocation.locationOfRequester)
-
-    // database.ref().on("child_added", function(childSnaphot) {
-    //     console.log(childSnaphot.val());
-    
-    //     var loc = childSnaphot.val().locationOfRequester;
-    //     console.log(loc)
-    // })
+        var loc = childSnaphot.val().locationOfRequester;
+        console.log(loc)
+    })

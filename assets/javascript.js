@@ -18,6 +18,7 @@ $(".hvrbx-layer-top").on("click", function() {
     }).then(function(response) {
         // creating a shortcut
         movieData = response.results;
+        console.log(movieData)
 
         // show 10 results on the page
         for (var i = 0; i < 10; i ++) {
@@ -191,3 +192,14 @@ var movieURl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?loc
     const amcKey = "507E4606-B4A4-4596-8D74-F3BEF579E901"
 
     const amcURL = "/v2/theatres"
+
+      // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAkczBlIpMSF88zPyDTKtewrb7P7Vf9JH0",
+    authDomain: "groupproject-9d9bb.firebaseapp.com",
+    databaseURL: "https://groupproject-9d9bb.firebaseio.com",
+    projectId: "groupproject-9d9bb",
+    storageBucket: "groupproject-9d9bb.appspot.com",
+    messagingSenderId: "122843347744"
+  };
+  firebase.initializeApp(config);

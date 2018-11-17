@@ -166,4 +166,7 @@ h1 {
 }
 .subtext {
     font-size: 2em;
+}     
+body{
+    font-family: 'Roboto Condensed', sans-serif;
 }

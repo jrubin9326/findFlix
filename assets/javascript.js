@@ -1,14 +1,9 @@
-// $(document).on("click", ".hvrbx-layer-top", function() {
-//     var offset = $("#movie-results").offset()
-//     $("body").scrollBottom(offset.bottom);
-// })
-
-
+// when the user clicks on one of the genres...
 $(".hvrbx-layer-top").on("click", function() {
     // clear the movies from the previous genre, if any are on the page
     $("#movie-results").empty();  
 
-    // grab the value of the genre button
+    // grab the value of the genre button, to be passed to the TMDB API
     var searchTerm = $(this).attr("value");
 
     // `movieData` will hold the response object
@@ -24,7 +19,6 @@ $(".hvrbx-layer-top").on("click", function() {
     }).then(function(response) {
         // creating a shortcut
         movieData = response.results;
-        console.log(movieData)
 
         // show 10 results on the page
         for (var i = 0; i < 10; i ++) {
@@ -44,12 +38,8 @@ function displayMovieInfo(search) {
 
     var movieImage = $("<img>")
     var moviePoster = search.poster_path
-    console.log(moviePoster)
     var moviePosterUrl = "https://image.tmdb.org/t/p/w300" + moviePoster
-    console.log(moviePosterUrl)
     movieImage.attr("src", moviePosterUrl)
-
-    // var detailsCol = $("<div>");
 
     var newTitle = $("<h4>");
     newTitle.text(search.title);
@@ -66,19 +56,22 @@ function displayMovieInfo(search) {
     var newAvgVote = $("<p>");
     newAvgVote.text("Average Vote: " + search.vote_average);
 
+    // attaching the movie ID to the trailer button
+    // when the button is clicked, it will pass the movie ID to the TMDB API again
     var watchTrailer = $("<button>");
     watchTrailer.addClass("watch-trailer-btn btn btn-dark sm-btn");
     watchTrailer.text("Watch the trailer");
     watchTrailer.attr("movieID", search.id);
 
     var newTrailer = $("<iframe>");
-    newTrailer.attr("width", "956");
-    newTrailer.attr("height", "538");
+    newTrailer.attr("width", "853");
+    newTrailer.attr("height", "480");
     newTrailer.attr("src", "");
     newTrailer.attr("class", "movie-trailer")
     // attaching the movie ID to the video element so it can be located later
     newTrailer.attr("id", search.id);
 
+    // appending all the information to the two columns
     posterCol.append(movieImage);
 
     detailsCol.append(newTitle);
@@ -91,13 +84,16 @@ function displayMovieInfo(search) {
     detailsCol.append(newTrailer);
     newTrailer.hide();
 
+    // appending the two columns to the new row
     newRow.append(posterCol);
     newRow.append(detailsCol);
 
+    // appending the new row to the page with spacing
     $("#movie-results").append("<br>");
     $("#movie-results").append(newRow);
     $("#movie-results").append("<br>");
 
+    // automatically scroll to the results area when a genre is clicked
     var offset = $("#movie-results").offset();
     window.scroll(0, offset.top);
 }
@@ -107,6 +103,7 @@ $(document).on("click", ".watch-trailer-btn", function() {
     $(".movie-trailer").hide();
     var trailerID = $(this).attr("movieID");
     
+    // using the movieID attribute to complete the second query URL
     var trailerQueryURL = "https://api.themoviedb.org/3/movie/" + trailerID + "/videos?api_key=6d9d4c1511419d5253e7cf5683b3e1df&language=en-US";
 
     // Creates AJAX call for the specific trailer button being clicked

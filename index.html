@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
     <!-- something might be wrong with this script link, I was using it for the hw and had some issues -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <title>findflix</title>
 </head>   
@@ -29,12 +29,7 @@
             
             <!--will not be visible on pg-->
             <input type ="checkbox" checked>
-            <!-- <div class="jumbotron text-center">
-                    <h1 class="type-bold">Welcome to Findflix</h1>
-                    <h3 class="animated bounceInDown">Get ready for some Lights, Camera and SHOWTIME!</h3>
-                    <br>
-                    <h5 class="animated pulse delay-2s">Get started by picking a genre!</h5>
-                </div> -->
+
             <!--left curtain-->
             <div class = "curtain-panel curtain-lt">
                 <div class = "txt-lt">
@@ -43,35 +38,35 @@
                     <div class ="subtext">Click to&nbsp;</div>
                 </div>
             </div>
+
             <!--where icons will be displayed-->
             <div class = "curtain-feature">
                 <div class = "container img-container">
                     <h2 class="text-light"> What genre are you in the mood for? </h2>
                     <br>
+
                     <div class = "hvrbx">
                         <img class="img-thumbnail hvr-layer-btm" value="35" src="assets/images/comedy.png" alt="Comedy Image">
                             <div class = "hvrbx-layer-top" value="35">
                                 <div class ="hvrbx-text">Comedy</div>
                             </div>
                     </div>
-                    
                     <div class = "hvrbx">
                         <img class="img-thumbnail hvr-layer-btm" value="18" src="assets/images/drama.jpg" alt="Drama Image">
                         <div class = "hvrbx-layer-top" value="18">
                             <div class = "hvrbx-text">Drama</div>
                         </div>
                     </div>
-                        <div class = "hvrbx">
-                            <img class="img-thumbnail hvr-layer-btm" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
-                            <div class ="hvrbx-layer-top" value="14">
-                                <div class = "hvrbx-text">Fantasy</div>
-                            </div>
+                    <div class = "hvrbx">
+                        <img class="img-thumbnail hvr-layer-btm" value="14" src="assets/images/fantasy.png" alt="Fantasy Img">
+                        <div class ="hvrbx-layer-top" value="14">
+                            <div class = "hvrbx-text">Fantasy</div>
                         </div>
-                        <div class = "hvrbx" >
-                            <img class="img-thumbnail hvr-layer-btm" value="27" src="assets/images/horror.png" alt="Horror img">
-                            <div class = "hvrbx-layer-top" value = "27">
-                                <div class = "hvrbx-text" >Horror</div>
-                            </div>
+                    </div>
+                    <div class = "hvrbx" >
+                        <img class="img-thumbnail hvr-layer-btm" value="27" src="assets/images/horror.png" alt="Horror img">
+                        <div class = "hvrbx-layer-top" value = "27">
+                            <div class = "hvrbx-text" >Horror</div>
                         </div>
                     </div>
                     <div class = "hvrbx">
@@ -157,16 +152,18 @@
                         <div class = "hvrbx-layer-top" value="37">
                             <div class = "hvrbx-text">Western</div>
                         </div>
-                    </div>    
+                    </div>
+
                     <form>
-                        Input your location, to find nearest movie theater!
+                        Input your location to find nearest movie theater!
                         <input id = "locationText" type = "text" name ="location">
                         <input type = "submit" id = "location-submit">
                     </form>             
                     <div id = "nearestCinema"></div>
                 </div>
             </div>
-            <!--left curtain-->
+
+            <!--right curtain-->
             <div class = "curtain-panel curtain-rt">
                 <div class = "txt-rt">
                     <h1> to Findflix</h1>
@@ -187,9 +184,9 @@
 
     <!--link to axios-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!--google maps APi-->
+    <!--google maps API-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o&libraries=places"></script>
-    <!--link to jquery-->
+    <!--link to jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <!--Link to Firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>

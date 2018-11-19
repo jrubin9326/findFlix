@@ -164,14 +164,13 @@ function geolocation() {
         url: movieURl,
         method: "GET"
     }).then(function(response){
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<")
         console.log(response.results[0].name)
         var movieLocation = response.results[0].name; 
         var movieDistance = response.results[0].vicinity
         console.log(response)
 
         var movieLocationDiv = $("<div>"); 
-        movieLocationDiv.empty()
+        movieLocationDiv.text("")
         movieLocationDiv.addClass("theater")
         movieLocationDiv.text("The theater nearest to you is: "+movieLocation+", located at " +movieDistance+"."); 
         $("#nearestCinema").append(movieLocationDiv); 
@@ -185,14 +184,14 @@ function geolocation() {
 
 
      // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyAZ-i2ghZA6YqyiuhGpzYU9f_UqgeWxhpA",
-    authDomain: "groupproject-48ce2.firebaseapp.com",
-    databaseURL: "https://groupproject-48ce2.firebaseio.com",
-    projectId: "groupproject-48ce2",
-    storageBucket: "groupproject-48ce2.appspot.com",
-    messagingSenderId: "917227256677"
-};
+     var config = {
+        apiKey: "AIzaSyAZ-i2ghZA6YqyiuhGpzYU9f_UqgeWxhpA",
+        authDomain: "groupproject-48ce2.firebaseapp.com",
+        databaseURL: "https://groupproject-48ce2.firebaseio.com",
+        projectId: "groupproject-48ce2",
+        storageBucket: "groupproject-48ce2.appspot.com",
+        messagingSenderId: "917227256677"
+      };
       firebase.initializeApp(config);
 
     // //Create a variable to reference the database
@@ -200,13 +199,16 @@ var config = {
     console.log(database)
 
 
-    console.log("Firebase location value stored: " + userStoredLocation)
-    $("#location-submit").on("click", function(event){
+   
+    $(".genre-choices").on("click",".hvrbx-layer-top", function(event){
         event.preventDefault(); 
-        var movieLocation = $("#locationText").val.trim(); 
-        database.ref().set( {
-            movieLocation:movieLocation
-        }); 
-        console.log(movieLocation);
-        $("#nearestCinema").text(movieLocation); 
-    })
+        //takes genre name and stores value to firebase 
+        var userSelection = $(this).attr("name")
+      
+        database.ref().set({
+            userSelection:userSelection
+        });
+        $(".firebase-populate").text("Your last selection: "+ userSelection); 
+        
+        
+    }); 

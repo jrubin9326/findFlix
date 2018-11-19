@@ -106,7 +106,7 @@ img:hover {
     float:left; 
     position:relative; 
     z-index:2; /*places panel in front of icons*/
-    transition: all .5s ease-out; 
+    transition: all 1s ease-out; 
 }
 
 
@@ -210,17 +210,22 @@ body{
 .theater {
     padding-top:10px;
     font-size:20px; 
-    color:white; 
+    color:#fff;
     text-align:center; 
 }
 
 h2.text-light {
     text-align:center; 
-    padding:30px; 
+    padding:20px; 
 }
 
 form {
     text-align:center; 
     padding-top:20px; 
-    color:white; 
+    color:#fff; 
+}
+
+.firebase-populate {
+    text-align:center; 
+    color:#fff
 }

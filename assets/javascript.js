@@ -128,7 +128,7 @@ $(document).on("click", ".watch-trailer-btn", function() {
 
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
 var loc;
-
+var movieLocation; 
 $("#location-submit").on("click", function() {
     event.preventDefault();
     
@@ -162,15 +162,21 @@ function geolocation() {
     }).then(function(response){
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<")
         console.log(response.results[0].name)
-        movieLocation = response.results[0].name; 
+        var movieLocation = response.results[0].name; 
+        var movieLocationDiv = $("div"); 
+        movieLocationDiv.text(movieLocation); 
+        $("#location-submit").append(movieLocationDiv); 
     }).catch(function(error){
         console.log(error)
     }); 
 })
 }
 
- 
 
+// function displayMovieTheater () {
+
+// }
+ 
 
       // Initialize Firebase
 //   var config = {
@@ -188,12 +194,12 @@ function geolocation() {
     // console.log(database)
 
 
-    console.log("Firebase location value stored: " + userStoredLocation)
+    // console.log("Firebase location value stored: " + userStoredLocation)
 
-    database.ref().on("child_added", function(childSnaphot) {
-        console.log(childSnaphot.val());
+    // database.ref().on("child_added", function(childSnaphot) {
+    //     console.log(childSnaphot.val());
     
-        var loc = childSnaphot.val().locationOfRequester;
-        console.log(loc)
+    //     var loc = childSnaphot.val().locationOfRequester;
+    //     console.log(loc)
 
-    })
+    // })

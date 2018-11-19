@@ -159,14 +159,22 @@ function geolocation() {
     }).then(function(response){
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<")
         console.log(response.results[0].name)
-        movieLocation = response.results[0].name; 
+        var movieLocation = response.results[0].name; 
+        var movieDistance = response.results[0].vicinity
+        console.log(response)
+
+        var movieLocationDiv = $("<div>"); 
+        movieLocationDiv.empty()
+        movieLocationDiv.addClass("theater")
+        movieLocationDiv.text("The theater nearest to you is: "+movieLocation+", located at " +movieDistance+"."); 
+        $("#nearestCinema").append(movieLocationDiv); 
     }).catch(function(error){
         console.log(error)
     }); 
 })
 }
 
- 
+
 
 
       // Initialize Firebase
@@ -185,12 +193,12 @@ function geolocation() {
     // console.log(database)
 
 
-    console.log("Firebase location value stored: " + userStoredLocation)
+    // console.log("Firebase location value stored: " + userStoredLocation)
 
-    database.ref().on("child_added", function(childSnaphot) {
-        console.log(childSnaphot.val());
+    // database.ref().on("child_added", function(childSnaphot) {
+    //     console.log(childSnaphot.val());
     
-        var loc = childSnaphot.val().locationOfRequester;
-        console.log(loc)
+    //     var loc = childSnaphot.val().locationOfRequester;
+    //     console.log(loc)
 
-    })
+    // })

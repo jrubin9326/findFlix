@@ -206,3 +206,9 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
+
+.theater {
+    padding-top:10px;
+    font-size:20px; 
+    color:white; 
+}

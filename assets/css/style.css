@@ -211,4 +211,16 @@ body{
     padding-top:10px;
     font-size:20px; 
     color:white; 
+    text-align:center; 
+}
+
+h2.text-light {
+    text-align:center; 
+    padding:30px; 
+}
+
+form {
+    text-align:center; 
+    padding-top:20px; 
+    color:white; 
 }

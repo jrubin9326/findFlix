@@ -177,28 +177,29 @@ function geolocation() {
 
 
 
-      // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyAkczBlIpMSF88zPyDTKtewrb7P7Vf9JH0",
-//     authDomain: "groupproject-9d9bb.firebaseapp.com",
-//     databaseURL: "https://groupproject-9d9bb.firebaseio.com",
-//     projectId: "groupproject-9d9bb",
-//     storageBucket: "groupproject-9d9bb.appspot.com",
-//     messagingSenderId: "122843347744"
-//   };
-//     firebase.initializeApp(config);
+     // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAZ-i2ghZA6YqyiuhGpzYU9f_UqgeWxhpA",
+    authDomain: "groupproject-48ce2.firebaseapp.com",
+    databaseURL: "https://groupproject-48ce2.firebaseio.com",
+    projectId: "groupproject-48ce2",
+    storageBucket: "groupproject-48ce2.appspot.com",
+    messagingSenderId: "917227256677"
+};
+      firebase.initializeApp(config);
 
-//     // //Create a variable to reference the database
-//     var database = firebase.database();
-    // console.log(database)
+    // //Create a variable to reference the database
+    var database = firebase.database();
+    console.log(database)
 
 
-    // console.log("Firebase location value stored: " + userStoredLocation)
-
-    // database.ref().on("child_added", function(childSnaphot) {
-    //     console.log(childSnaphot.val());
-    
-    //     var loc = childSnaphot.val().locationOfRequester;
-    //     console.log(loc)
-
-    // })
+    console.log("Firebase location value stored: " + userStoredLocation)
+    $("#location-submit").on("click", function(event){
+        event.preventDefault(); 
+        var movieLocation = $("#locationText").val.trim(); 
+        database.ref().set( {
+            movieLocation:movieLocation
+        }); 
+        console.log(movieLocation);
+        $("#nearestCinema").text(movieLocation); 
+    })

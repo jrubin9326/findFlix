@@ -56,20 +56,13 @@ function displayMovieInfo(search) {
     var newAvgVote = $("<p>");
     newAvgVote.text("Average Vote: " + search.vote_average);
 
-    // attaching the movie ID to the trailer button
-    // when the button is clicked, it will pass the movie ID to the TMDB API again
     var watchTrailer = $("<button>");
     watchTrailer.addClass("watch-trailer-btn btn btn-dark sm-btn");
     watchTrailer.text("Watch the trailer");
+    // attaching the movie ID to the trailer button
+    // when the button is clicked, it will pass the movie ID to the TMDB API again
+    // to do a new search for the trailer
     watchTrailer.attr("movieID", search.id);
-
-    var newTrailer = $("<iframe>");
-    newTrailer.attr("width", "853");
-    newTrailer.attr("height", "480");
-    newTrailer.attr("src", "");
-    newTrailer.attr("class", "movie-trailer")
-    // attaching the movie ID to the video element so it can be located later
-    newTrailer.attr("id", search.id);
 
     // appending all the information to the two columns
     posterCol.append(movieImage);
@@ -81,8 +74,6 @@ function displayMovieInfo(search) {
     detailsCol.append(newAvgVote);
     detailsCol.append(watchTrailer);
     detailsCol.append("<br><br>");
-    detailsCol.append(newTrailer);
-    newTrailer.hide();
 
     // appending the two columns to the new row
     newRow.append(posterCol);
@@ -99,8 +90,8 @@ function displayMovieInfo(search) {
 }
 
 $(document).on("click", ".watch-trailer-btn", function() {
-    // hide any previously opened trailer
-    $(".movie-trailer").hide();
+
+    $("#innerModal").empty();
     var trailerID = $(this).attr("movieID");
     
     // using the movieID attribute to complete the second query URL
@@ -117,11 +108,27 @@ $(document).on("click", ".watch-trailer-btn", function() {
         var youtubeLink = "https://www.youtube.com/embed/" + videoKey;
         // change the source of the video and show the element
         $("#" + trailerID).attr("src", youtubeLink);
-        $("#" + trailerID).show();
+        // $("#" + trailerID).show();
         
     });
+
+    var newTrailer = $("<iframe>");
+    newTrailer.attr("width", "853");
+    newTrailer.attr("height", "480");
+    newTrailer.attr("src", "");
+    newTrailer.attr("class", "movie-trailer")
+    // attaching the movie ID to the video element so it can be located later
+    newTrailer.attr("id", trailerID);
+
+    $("#innerModal").append(newTrailer);
+
+    $("#myModal").css("display", "block");
 });
 
+// hide the trailer modal after clicking the close button
+$(document).on("click", "#closeModal", function() {
+    $("#myModal").css("display", "none");
+});
 
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
 var loc;

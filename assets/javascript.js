@@ -135,6 +135,7 @@ var loc;
 
 $("#location-submit").on("click", function() {
     event.preventDefault();
+    $("#nearestCinema").empty();
     
     geolocation()
     
@@ -150,24 +151,24 @@ function geolocation() {
         }
     })
     .then(function(response){
-        console.log(response);
-    // latitude 
+        // console.log(response);
+        // latitude 
         const latitude = response.data.results[0].geometry.location.lat;
-        console.log(latitude)
+        // console.log(latitude)
         //longitude 
         const longitude = response.data.results[0].geometry.location.lng;
-        console.log(longitude)
+        // console.log(longitude)
      
         var movieURl = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latitude+","+longitude+"&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
-        console.log(movieURl, "hi")
+        // console.log(movieURl, "hi")
         $.ajax({
         url: movieURl,
         method: "GET"
     }).then(function(response){
-        console.log(response.results[0].name)
+        // console.log(response.results[0].name)
         var movieLocation = response.results[0].name; 
         var movieDistance = response.results[0].vicinity
-        console.log(response)
+        // console.log(response)
 
         var movieLocationDiv = $("<div>"); 
         movieLocationDiv.text("")

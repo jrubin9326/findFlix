@@ -1,7 +1,11 @@
+$("#lower-area").hide();
+
 // when the user clicks on one of the genres...
 $(".hvrbx-layer-top").on("click", function() {
     // clear the movies from the previous genre, if any are on the page
     $("#movie-results").empty();  
+
+    $("#lower-area").show();
 
     // grab the value of the genre button, to be passed to the TMDB API
     var searchTerm = $(this).attr("value");
@@ -88,6 +92,10 @@ function displayMovieInfo(search) {
     var offset = $("#movie-results").offset();
     window.scroll(0, offset.top);
 }
+
+$("#go-to-top").on("click", function() {
+    window.scroll(0, 0);
+});
 
 $(document).on("click", ".watch-trailer-btn", function() {
 
@@ -181,35 +189,28 @@ function geolocation() {
 })
 }
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAZ-i2ghZA6YqyiuhGpzYU9f_UqgeWxhpA",
+    authDomain: "groupproject-48ce2.firebaseapp.com",
+    databaseURL: "https://groupproject-48ce2.firebaseio.com",
+    projectId: "groupproject-48ce2",
+    storageBucket: "groupproject-48ce2.appspot.com",
+    messagingSenderId: "917227256677"
+};
+firebase.initializeApp(config);
 
+// //Create a variable to reference the database
+var database = firebase.database();
 
+$(".genre-choices").on("click",".hvrbx-layer-top", function(event){
+    event.preventDefault(); 
+    //takes genre name and stores value to firebase 
+    var userSelection = $(this).attr("name")
 
-     // Initialize Firebase
-     var config = {
-        apiKey: "AIzaSyAZ-i2ghZA6YqyiuhGpzYU9f_UqgeWxhpA",
-        authDomain: "groupproject-48ce2.firebaseapp.com",
-        databaseURL: "https://groupproject-48ce2.firebaseio.com",
-        projectId: "groupproject-48ce2",
-        storageBucket: "groupproject-48ce2.appspot.com",
-        messagingSenderId: "917227256677"
-      };
-      firebase.initializeApp(config);
+    database.ref().set({
+        userSelection:userSelection
+    });
 
-    // //Create a variable to reference the database
-    var database = firebase.database();
-    console.log(database)
-
-
-   
-    $(".genre-choices").on("click",".hvrbx-layer-top", function(event){
-        event.preventDefault(); 
-        //takes genre name and stores value to firebase 
-        var userSelection = $(this).attr("name")
-      
-        database.ref().set({
-            userSelection:userSelection
-        });
-        $(".firebase-populate").text("Your last selection: "+ userSelection); 
-        
-        
-    }); 
+    $(".firebase-populate").text("Your last selection: "+ userSelection);
+}); 

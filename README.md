@@ -1,6 +1,8 @@
 # groupProject - findFlix
 Create a site where users can search for the most popular movies at that time filtered by genre, read information about the movie, and watch the trailer. 
 
+Site: https://jrubin9326.github.io/groupProject/
+
 # Motivation
 Made for users who are in the mood for a certain genre or type of movie, but are not sure what to watch. 
 

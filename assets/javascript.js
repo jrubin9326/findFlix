@@ -138,6 +138,13 @@ $(document).on("click", "#closeModal", function() {
     $("#myModal").css("display", "none");
 });
 
+// hide the trailer modal after clicking anywhere outside the modal content area, if the modal isn't already hidden
+$(document).on("click", "#myModal", function() {
+    if ($("#myModal").css("display") === "block") {
+        $("#myModal").css("display", "none");
+    }
+});
+
 var googleURL = "https://maps.googleapis.com/maps/api/geocode/json";
 var loc;
 

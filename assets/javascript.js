@@ -1,3 +1,4 @@
+// hide the lower area until a genre is selected
 $("#lower-area").hide();
 
 // when the user clicks on one of the genres...
@@ -41,9 +42,9 @@ function displayMovieInfo(search) {
     detailsCol.addClass("col-lg-8");
 
     var movieImage = $("<img>")
-    var moviePoster = search.poster_path
-    var moviePosterUrl = "https://image.tmdb.org/t/p/w300" + moviePoster
-    movieImage.attr("src", moviePosterUrl)
+    var moviePoster = search.poster_path;
+    var moviePosterUrl = "https://image.tmdb.org/t/p/w300" + moviePoster;
+    movieImage.attr("src", moviePosterUrl);
 
     var newTitle = $("<h4>");
     newTitle.text(search.title);
@@ -93,6 +94,7 @@ function displayMovieInfo(search) {
     window.scroll(0, offset.top);
 }
 
+// scroll to the top of the page
 $("#go-to-top").on("click", function() {
     window.scroll(0, 0);
 });
@@ -116,7 +118,6 @@ $(document).on("click", ".watch-trailer-btn", function() {
         var youtubeLink = "https://www.youtube.com/embed/" + videoKey;
         // change the source of the video and show the element
         $("#" + trailerID).attr("src", youtubeLink);
-        // $("#" + trailerID).show();
         
     });
 
@@ -140,7 +141,6 @@ $(document).on("click", "#closeModal", function() {
 
 // hide the trailer modal after clicking anywhere outside the inner modal area, if the modal isn't already hidden
 $(document).on("click", "#myModal", function(event) {
-    console.log(event.target);
     if ((event.target).id != "innerModal") {
         if ($("#myModal").css("display") === "block") {
             $("#myModal").css("display", "none");
@@ -162,7 +162,7 @@ $("#location-submit").on("click", function() {
 
 // // making a GET request to get user lat & long from user location
 function geolocation() {
-    loc =  $("#locationText").val().trim()   
+    loc =  $("#locationText").val().trim();
     axios.get(googleURL, {
         params: {
             address: loc,
@@ -170,32 +170,26 @@ function geolocation() {
         }
     })
     .then(function(response){
-        // console.log(response);
         // latitude 
         const latitude = response.data.results[0].geometry.location.lat;
-        // console.log(latitude)
         //longitude 
         const longitude = response.data.results[0].geometry.location.lng;
-        // console.log(longitude)
      
         var movieURl = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latitude+","+longitude+"&radius=1500&type=movie_theater&key=AIzaSyAWBZmsW4r6XvMYn5LUIrAT4O5Kooc4W3o";
-        // console.log(movieURl, "hi")
         $.ajax({
         url: movieURl,
         method: "GET"
     }).then(function(response){
-        // console.log(response.results[0].name)
         var movieLocation = response.results[0].name; 
-        var movieDistance = response.results[0].vicinity
-        // console.log(response)
+        var movieDistance = response.results[0].vicinity;
 
         var movieLocationDiv = $("<div>"); 
-        movieLocationDiv.text("")
-        movieLocationDiv.addClass("theater")
+        movieLocationDiv.text("");
+        movieLocationDiv.addClass("theater");
         movieLocationDiv.text("The theater nearest to you is: "+movieLocation+", located at " +movieDistance+"."); 
         $("#nearestCinema").append(movieLocationDiv); 
     }).catch(function(error){
-        console.log(error)
+        console.log(error);
     }); 
 })
 }
@@ -217,7 +211,7 @@ var database = firebase.database();
 $(".genre-choices").on("click",".hvrbx-layer-top", function(event){
     event.preventDefault(); 
     //takes genre name and stores value to firebase 
-    var userSelection = $(this).attr("name")
+    var userSelection = $(this).attr("name");
 
     database.ref().set({
         userSelection:userSelection

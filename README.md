@@ -11,10 +11,10 @@ Click on a the icon in accordance with the genre you want to watch. Now sure wha
 When a genre icon is clicked, you'll jump down the page to a list of the most popular movies for that genre. Read a bit more of watch the trailer. 
 
 # Tech/Frameworks Used
-HTML
-CSS
-JS
-AJAX
-Axios
-Firebase
-APIs
+* HTML
+* CSS
+* JS
+* AJAX
+* Axios
+* Firebase
+* APIs
